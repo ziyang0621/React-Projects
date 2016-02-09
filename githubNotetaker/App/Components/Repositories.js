@@ -9,6 +9,7 @@ import React, {
 
 import Badge from './Badge';
 import Separator from '../Helpers/Separator'
+import Web_View from '../Helpers/WebView'
 
 const styles = StyleSheet.create({
   container: {
@@ -37,7 +38,11 @@ const styles = StyleSheet.create({
 
 class Repositories extends Component {
   openPage(url) {
-    console.log('the url is ', url);
+    this.props.navigator.push({
+      component: Web_View,
+      title:'Web View',
+      passProps: {url}
+    });
   }
 
   render() {
@@ -69,8 +74,8 @@ class Repositories extends Component {
   }
 }
 
-Repositories.propTypes {
-  userInfo: React.propTypes.object.isRequired,
+Repositories.propTypes = {
+  userInfo: React.PropTypes.object.isRequired,
   repos: React.PropTypes.array.isRequired
 }
 

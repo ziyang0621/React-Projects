@@ -7,7 +7,10 @@ import React, {
   View
 } from 'react-native';
 
-import Profile from './Profile'
+import Profile from './Profile';
+import api from '../Utils/Api';
+import Repositories from './Repositories';
+import Notes from './Notes';
 
 const styles = StyleSheet.create({
   container: {
@@ -54,12 +57,32 @@ class Dashboard extends Component {
   }
 
   goToRepro() {
-    console.log("Going to Repro Page");
-
+    api.getRepos(this.props.userInfo.login)
+      .then((res) => {
+        this.props.navigator.push({
+             component: Repositories,
+             title: 'Repos',
+             passProps: {
+               userInfo: this.props.userInfo,
+               repos: res
+             }
+           });
+      });
   }
 
   goToNotes() {
-    console.log("Going to Notes Page");
+    api.getNotes(this.props.userInfo.login)
+      .then((res) => {
+        res = res || {};
+        this.props.navigator.push({
+          component: Notes,
+          title: 'Notes',
+          passProps: {
+            notes: res,
+            userInfo: this.props.userInfo
+          }
+        })
+      })
   }
 
   render() {
