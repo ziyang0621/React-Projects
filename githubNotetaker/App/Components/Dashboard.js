@@ -4,7 +4,8 @@ import React, {
   Text,
   Image,
   TouchableHighlight,
-  View
+  View,
+  Platform
 } from 'react-native';
 
 import Profile from './Profile';
@@ -14,7 +15,7 @@ import Notes from './Notes';
 
 const styles = StyleSheet.create({
   container: {
-     marginTop: 65,
+     marginTop: Platform.OS === 'ios' ? 65 : 0,
      flex: 1
    },
    image: {
@@ -49,11 +50,11 @@ class Dashboard extends Component {
   }
 
   goToProfile() {
-    this.props.navigator.push({
-         component: Profile,
-         title: 'Profile Page',
-         passProps: {userInfo: this.props.userInfo}
-       });
+     this.props.navigator.push({
+           component: Profile,
+           title: 'Profile Page',
+           passProps: {userInfo: this.props.userInfo}
+      });
   }
 
   goToRepro() {
@@ -86,7 +87,6 @@ class Dashboard extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.container}>
         <Image source={{uri: this.props.userInfo.avatar_url}} style={styles.image}/>

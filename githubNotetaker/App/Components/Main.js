@@ -5,16 +5,17 @@ import React, {
   TextInput,
   TouchableHighlight,
   ActivityIndicatorIOS,
+  Platform,
   View
 } from 'react-native';
-import api from '../Utils/Api'
-import Dashboard from './Dashboard'
+import api from '../Utils/Api';
+import Dashboard from './Dashboard';
 
 const styles = StyleSheet.create({
   mainContainer: {
      flex: 1,
      padding: 30,
-     marginTop: 65,
+     marginTop: Platform.OS === 'ios' ? 65 : 0,
      flexDirection: 'column',
      justifyContent: 'center',
      backgroundColor: '#48BBEC'

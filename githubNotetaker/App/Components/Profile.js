@@ -3,7 +3,8 @@ import React, {
   StyleSheet,
   Text,
   ScrollView,
-  View
+  View,
+  Platform,
 } from 'react-native';
 
 import Badge from './Badge';
@@ -11,7 +12,7 @@ import Separator from '../Helpers/Separator'
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1
+   flex: 1,
  },
  buttonText: {
    fontSize: 18,
