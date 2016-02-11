@@ -6,6 +6,7 @@ import React, {
   TouchableHighlight,
   ActivityIndicatorIOS,
   Platform,
+  ProgressBarAndroid,
   View
 } from 'react-native';
 import api from '../Utils/Api';
@@ -99,7 +100,7 @@ class Main extends Component {
   }
 
   render() {
-    var showErr = (
+    let showErr = (
       this.state.error ? <Text> {this.state.error} </Text> : <View></View>
     );
     return (

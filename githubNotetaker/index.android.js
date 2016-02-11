@@ -15,6 +15,10 @@ import React, {
 } from 'react-native';
 import Main from './App/Components/Main';
 import Dashboard from './App/Components/Dashboard';
+import Profile from './App/Components/Profile';
+import Repos from './App/Components/Repositories';
+import Notes from './App/Components/Notes';
+import Web from './App/Helpers/WebView';
 
 let _navigator;
 BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -27,90 +31,75 @@ BackAndroid.addEventListener('hardwareBackPress', () => {
   return false;
 });
 
+let showToolbar = (route, navigationOperations) => {
+  if (route.component != Main) {
+    return (
+      <ToolbarAndroid
+        actions={[]}
+        style={styles.toolbar}
+        titleColor="black"
+        navIcon={require('./back_button_black.png')}
+        onIconClicked={navigationOperations.pop}
+        title={route.title} />
+    );
+  } else {
+    return (
+      <ToolbarAndroid
+        actions={[]}
+        style={styles.toolbar}
+        titleColor="black"
+        title={route.title} />
+    );
+  }
+};
+
 let RouteMapper = function(route, navigationOperations, onComponentRef) {
   _navigator = navigationOperations;
   let Compt = route.component;
   if (Compt === Main) {
     return (
       <View style={{flex: 1}}>
-        <ToolbarAndroid
-          actions={[]}
-          style={styles.toolbar}
-          titleColor="black"
-          title={route.title} />
+        {showToolbar(route, navigationOperations)}
         <Compt navigator={navigationOperations} />
       </View>
     );
   } else if (Compt === Dashboard) {
-    console.log("compt else: " + route);
     return (
       <View style={{flex: 1}}>
-        <ToolbarAndroid
-          actions={[]}
-          style={styles.toolbar}
-          titleColor="black"
-          navIcon={require('./back_button_black.png')}
-          onIconClicked={navigationOperations.pop}
-          title={route.title} />
+        {showToolbar(route, navigationOperations)}
         <Compt navigator={navigationOperations} userInfo={route.passProps.userInfo}/>
       </View>
     );
-  } else if (route.title === 'Profile Page') {
+  } else if (Compt === Profile) {
     return (
       <View style={{flex: 1}}>
-        <ToolbarAndroid
-          actions={[]}
-          style={styles.toolbar}
-          titleColor="black"
-          navIcon={require('./back_button_black.png')}
-          onIconClicked={navigationOperations.pop}
-          title={route.title} />
+        {showToolbar(route, navigationOperations)}
         <Compt navigator={navigationOperations} userInfo={route.passProps.userInfo}/>
       </View>
     );
-  } else if (route.title === 'Repos') {
+  } else if (Compt === Repos) {
     return (
       <View style={{flex: 1}}>
-        <ToolbarAndroid
-          actions={[]}
-          style={styles.toolbar}
-          titleColor="black"
-          navIcon={require('./back_button_black.png')}
-          onIconClicked={navigationOperations.pop}
-          title={route.title} />
+        {showToolbar(route, navigationOperations)}
         <Compt navigator={navigationOperations} userInfo={route.passProps.userInfo} repos={route.passProps.repos}/>
       </View>
     );
-  } else if (route.title === 'Notes') {
+  } else if (Compt === Notes) {
     return (
       <View style={{flex: 1}}>
-        <ToolbarAndroid
-          actions={[]}
-          style={styles.toolbar}
-          titleColor="black"
-          navIcon={require('./back_button_black.png')}
-          onIconClicked={navigationOperations.pop}
-          title={route.title} />
+        {showToolbar(route, navigationOperations)}
         <Compt navigator={navigationOperations} userInfo={route.passProps.userInfo} notes={route.passProps.notes}/>
       </View>
     );
-  } else if (route.title === 'Web View') {
+  } else if (Compt === Web) {
     return (
       <View style={{flex: 1}}>
-        <ToolbarAndroid
-          actions={[]}
-          style={styles.toolbar}
-          titleColor="black"
-          navIcon={require('./back_button_black.png')}
-          onIconClicked={navigationOperations.pop}
-          title={route.title} />
+        {showToolbar(route, navigationOperations)}
         <Compt navigator={navigationOperations} url={route.passProps.url}/>
       </View>
     );
   }
-
 };
-
 
 class githubNotetaker extends Component {
   render() {
