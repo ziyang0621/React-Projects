@@ -30,7 +30,7 @@ BackAndroid.addEventListener('hardwareBackPress', () => {
 let RouteMapper = function(route, navigationOperations, onComponentRef) {
   _navigator = navigationOperations;
   let Compt = route.component;
-  if (route.name === 'Main') {
+  if (Compt === Main) {
     return (
       <View style={{flex: 1}}>
         <ToolbarAndroid
@@ -67,7 +67,7 @@ let RouteMapper = function(route, navigationOperations, onComponentRef) {
           title={route.title} />
         <Compt navigator={navigationOperations} userInfo={route.passProps.userInfo}/>
       </View>
-    )
+    );
   } else if (route.title === 'Repos') {
     return (
       <View style={{flex: 1}}>
@@ -80,7 +80,7 @@ let RouteMapper = function(route, navigationOperations, onComponentRef) {
           title={route.title} />
         <Compt navigator={navigationOperations} userInfo={route.passProps.userInfo} repos={route.passProps.repos}/>
       </View>
-    )
+    );
   } else if (route.title === 'Notes') {
     return (
       <View style={{flex: 1}}>
@@ -93,13 +93,28 @@ let RouteMapper = function(route, navigationOperations, onComponentRef) {
           title={route.title} />
         <Compt navigator={navigationOperations} userInfo={route.passProps.userInfo} notes={route.passProps.notes}/>
       </View>
+    );
+  } else if (route.title === 'Web View') {
+    return (
+      <View style={{flex: 1}}>
+        <ToolbarAndroid
+          actions={[]}
+          style={styles.toolbar}
+          titleColor="black"
+          navIcon={require('./back_button_black.png')}
+          onIconClicked={navigationOperations.pop}
+          title={route.title} />
+        <Compt navigator={navigationOperations} url={route.passProps.url}/>
+      </View>
+    );
   }
+
 };
 
 
 class githubNotetaker extends Component {
   render() {
-    let initialRoute = {component: Main, name: 'Main', title: 'GitHub Notetaker'};
+    let initialRoute = {component: Main, title: 'GitHub Notetaker'};
     return (
       <Navigator
         style={styles.container}

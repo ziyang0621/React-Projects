@@ -15,7 +15,7 @@ import Separator from '../Helpers/Separator';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   buttonText: {
     fontSize: 18,
@@ -55,16 +55,19 @@ class Notes extends React.Component{
       error: ''
     }
   }
+
   handleChange(e){
     this.setState({
       note: e.nativeEvent.text
     })
   }
+
   handleSubmit(){
     var note = this.state.note;
     this.setState({
       note: ''
     });
+
     api.addNote(this.props.userInfo.login, note)
       .then((data) => {
         api.getNotes(this.props.userInfo.login)
@@ -79,6 +82,7 @@ class Notes extends React.Component{
         this.setState({error})
       });
   }
+
   renderRow(rowData){
     return (
       <View>
@@ -89,6 +93,7 @@ class Notes extends React.Component{
       </View>
     )
   }
+
   footer(){
     return (
       <View style={styles.footerContainer}>

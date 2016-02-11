@@ -8,8 +8,8 @@ import React, {
 } from 'react-native';
 
 import Badge from './Badge';
-import Separator from '../Helpers/Separator'
-import Web_View from '../Helpers/WebView'
+import Separator from '../Helpers/Separator';
+import Web_View from '../Helpers/WebView';
 
 const styles = StyleSheet.create({
   container: {

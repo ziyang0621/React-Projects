@@ -18,7 +18,12 @@ var api = {
   addNote(username, note){
     username = username.toLowerCase().trim();
     var url = `https://github-saver-zt.firebaseio.com/${username}.json`;
+    console.log('the url: ' + url);
     return fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
       method: 'post',
       body: JSON.stringify(note)
     }).then((res) => res.json());
