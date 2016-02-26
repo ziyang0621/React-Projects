@@ -8,7 +8,7 @@ export default (props) => {
       <td>
         <CartButton
           txt="X"
-          hander={AppActions.removeItem.bind(null, props.item)} />
+          handler={AppActions.removeItem.bind(null, props.item)} />
       </td>
       <td>{props.item.title}</td>
       <td>{props.item.qty}</td>
@@ -16,10 +16,10 @@ export default (props) => {
         <div className="btn-group">
           <CartButton
             txt="-"
-            hander={AppActions.decreaseItem.bind(null, props.item)} />
+            handler={AppActions.decreaseItem.bind(null, props.item)} />
           <CartButton
             txt="+"
-            hander={AppActions.increaseItem.bind(null, props.item)} />
+            handler={AppActions.increaseItem.bind(null, props.item)} />
         </div>
       </td>
       <td>${props.subtotal}</td>
