@@ -82,7 +82,6 @@ const AppStore = Object.assign(EventEmitter.prototype, {
   dispatcherIndex: register( function(action) {
     switch (action.actionType) {
       case AppConstants.ADD_ITEM:
-        console.log("added item");
         _addItem(action.item);
         break;
 
